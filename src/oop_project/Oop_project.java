@@ -34,10 +34,10 @@ public class Oop_project
             {
                 System.out.println("If You Want To Deal With");
                 System.out.println("*************************************");
-                System.out.println("Player       Enter 1");
-                System.out.println("Match       Enter 2");
+                System.out.println("Player        Enter 1");
+                System.out.println("Match         Enter 2");
                 System.out.println("Referee       Enter 3");
-                System.out.println("Team       Enter 4");
+                System.out.println("Team          Enter 4");
                 System.out.println("Stadium       Enter 5");
                 System.out.println("*************************************");
                 int answer=input.nextInt();
@@ -58,8 +58,10 @@ public class Oop_project
                     else if(answer2==2)
                     {
                         System.out.println("Enter The Name Of The column ");
+                        
                         String col=input.next();
-                        if(col=="name")
+                        
+                        if(col.equals("name"))
                         {
                             System.out.println("Enter New Name ");
                             String New_Name=input.next();
@@ -69,7 +71,7 @@ public class Oop_project
                             int id=input.nextInt();
                             admin.update_Player(id, New_Name, Team_Name);
                         }
-                        else if(col=="height")
+                        else if(col.equals("height"))
                         {
                             System.out.println("Enter New Height ");
                             float New_height=input.nextFloat();
@@ -79,7 +81,7 @@ public class Oop_project
                             int id=input.nextInt();
                             admin.update_Player(New_height, id, Team_Name);
                         }
-                        else if(col=="weight")
+                        else if(col.equals("weight"))
                         {
                             System.out.println("Enter New weight ");
                             float New_weight=input.nextFloat();
@@ -89,7 +91,7 @@ public class Oop_project
                             int id=input.nextInt();
                             admin.update_Player(id, Team_Name, New_weight);
                         }
-                        else if(col=="Team_Name")
+                        else if(col.equals("Team_Name"))
                         {
                             System.out.println("Enter New Team ");
                             String New_Team=input.next();
@@ -99,7 +101,7 @@ public class Oop_project
                             int id=input.nextInt();
                             admin.update_Player(New_Team, id, Team_Name);
                         }
-                        else if(col=="id")
+                        else if(col.equals("id"))
                         {
                             System.out.println("Enter New id ");
                             int New_id=input.nextInt();

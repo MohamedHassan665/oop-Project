@@ -49,7 +49,7 @@ public class Admin
     {
         try
         {
-            String stadname;
+            String stadname=null;
             int ssn=0;
             System.out.println("Number of Matches ");
             int numberOfMatches = input.nextInt();
@@ -69,26 +69,41 @@ public class Admin
                     input.nextLine();
                     stadname = input.nextLine();
                 }
-                else
-                {
-                    stadname=null;
-                }
-
-                System.out.println("Is Referee avalaible?(y/n)");
-                answer = input.next().charAt(0);
-                if (answer == 'y')
-                {
-                    System.out.println("Enter SSN OF Referee ");
-                    ssn = input.nextInt();
-                }
-
+                
                 System.out.println("enter first team");
                 String first_team = input.next();
                 System.out.println("enter second team");
                 String Second_team = input.next();
+                System.out.println("Is Referee avalaible?(y/n)");
+                char answer2 = input.next().charAt(0);
+
+                if (answer2== 'y')
+                {
+                    System.out.println("Enter SSN OF Referee ");
+                    ssn = input.nextInt();
+                    if(answer=='y')
+                        statement.execute("insert into matche (Time,Match_id ,Match_date,SSN,Stadename,Frist_Team,Second_Team)values('" + time + "','" + match_id + "','" + date + "','" + ssn + "','" + stadname + "','" + first_team + "','" + Second_team + "')");
+                    else
+                    {
+                        statement.execute("insert into matche (Time,Match_id ,Match_date,SSN,Frist_Team,Second_Team)values('" + time + "','" + match_id + "','" + date + "','" + ssn + "','" + first_team + "','" + Second_team + "')");
+
+                    }
+                }
+                else
+                {
+                    if(answer=='y')
+                        statement.execute("insert into matche (Time,Match_id ,Match_date,Stadename,Frist_Team,Second_Team)values('" + time + "','" + match_id + "','" + date + "','" + stadname + "','" + first_team + "','" + Second_team + "')");
+                    else
+                    {
+                       
+                        statement.execute("insert into matche (Time,Match_id ,Match_date,Frist_Team,Second_Team)values('" + time + "','" + match_id + "','" + date + "','" + first_team + "','" + Second_team + "')");
+
+                    }
+                }
 
 
-                statement.execute("insert into matche (Time,Match_id ,Match_date,SSN,Stadename,Frist_Team,Second_Team)values('" + time + "','" + match_id + "','" + date + "','" + ssn + "','" + stadname + "','" + first_team + "','" + Second_team + "')");
+
+
 
 
             }
@@ -335,7 +350,7 @@ public class Admin
                 float player_weight = input.nextFloat();
                 query2 = "insert into player values('" + player_name + "','" + player_height + "','" + player_weight + "','" + name + "','" + player_num + "')";
                 statement.execute(query2);
-                System.out.println("Inserted done");
+
             }
         }
         catch (SQLException se)
@@ -396,6 +411,7 @@ public class Admin
                 int IdMatch=input.nextInt();
 
                 System.out.println("Enter Name of Stadium ");
+                
                 String Stadium =input.nextLine();
                 statement.execute("update matche set stadename='" + Stadium+ "' where Match_id='" + IdMatch + "'" );
 
@@ -545,7 +561,7 @@ public class Admin
             statement.execute(query2);
             query2="delete from matche where Frist_Team='"+team+"' OR Second_Team='"+team+"'";
             statement.execute(query2);
-            System.out.println("deleted done");
+
 
         }
 
